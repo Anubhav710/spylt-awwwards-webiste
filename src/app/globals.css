@@ -1,26 +1,114 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-black: #222123;
+  --color-main-bg: #232224;
+  --color-white: #ffffff;
+  --color-dark-brown: #523122;
+  --color-mid-brown: #a26833;
+  --color-light-brown: #e3a458;
+  --color-red-brown: #7f3b2d;
+  --color-yellow-brown: #a26833;
+  --color-milk-yellow: #e3d3bc;
+  --color-red: #a02128;
+  --color-milk: #faeade;
+  --font-antonio: var(--font-antonio);
+  --font-proxima-nova: var(--font-proxima-nova);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #faeade;
+  color: #523122;
+  overflow-x: hidden;
+}
+
+@layer base {
+  p {
+    @apply font-proxima-nova;
+  }
+}
+
+@layer utilities {
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+  .col-center {
+    @apply flex flex-col justify-center items-center;
+  }
+  .abs-center {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+
+  .general-title {
+    @apply 2xl:text-[8.5rem] md:text-8xl text-5xl font-bold uppercase leading-[9vw] tracking-[-.35vw];
+  }
+}
+
+@layer components {
+  .paragraph-line {
+    @apply text-nowrap overflow-hidden;
+  }
+
+  .hero-container {
+    @apply relative bg-milk w-screen h-dvh overflow-hidden;
+  }
+
+  .hero-content {
+    @apply relative z-10 size-full flex flex-col 2xl:justify-center items-center translate-y-10 2xl:pt-0 md:pt-32 pt-24;
+
+    .hero-title {
+      @apply text-dark-brown px-1  2xl:text-[8.5rem] md:text-[6.5rem] text-[3.3rem] font-bold uppercase leading-[9vw] tracking-[-.35vw] 2xl:mb-0 mb-5;
+    }
+
+    .hero-text-scroll {
+      @apply rotate-[-3deg] mb-8 border-[.5vw] border-milk;
+
+      .hero-subtitle {
+        @apply bg-mid-brown;
+      }
+
+      h1 {
+        @apply uppercase 2xl:text-[8.5rem] md:text-[6.5rem] text-[3.3rem] font-bold text-[#fce1cd] leading-[9vw] tracking-[-.35vw] 2xl:px-[1.2vw] px-3 2xl:pb-[1vw] pb-5 2xl:py-0 py-3;
+      }
+    }
+
+    h2 {
+      @apply font-proxima-nova text-dark-brown text-center md:max-w-lg max-w-sm px-5 md:text-lg leading-[115%] mt-3;
+    }
+    .hero-btn {
+      @apply md:mt-16 mt-10 text-dark-brown bg-light-brown uppercase font-bold text-lg rounded-full md:p-5 p-3 md:px-16 px-10 cursor-pointer text-[1.2rem];
+    }
+  }
+
+  .message-content {
+    @apply bg-[#7f3b2d] text-milk min-h-dvh overflow-hidden flex justify-center items-center relative z-20;
+
+    .msg-wrapper {
+      @apply 2xl:text-[8.5rem] md:text-8xl text-5xl font-bold uppercase leading-[9vw] tracking-[-.35vw] flex flex-col justify-center items-center md:gap-24 gap-14;
+
+      h1:first-of-type {
+        @apply 2xl:max-w-4xl md:max-w-2xl max-w-xs text-center  text-[#faeade10];
+      }
+
+      h1:last-of-type {
+        @apply 2xl:max-w-7xl md:max-w-4xl max-w-xs text-center  text-[#faeade10];
+      }
+    }
+
+    p {
+      @apply text-center;
+    }
+
+    h1,
+    h2 {
+      @apply leading-none;
+    }
+
+    .msg-text-scroll {
+      @apply rotate-[3deg] 2xl:translate-y-5 -translate-y-5 absolute z-10 border-[.5vw] border-[#7f3b2d];
+    }
+  }
 }
