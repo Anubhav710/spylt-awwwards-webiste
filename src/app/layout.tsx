@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Antonio } from "next/font/google";
 import localFont from "next/font/local";
+import LenisProvider from "@/components/SmoothScroll";
 
 const antonio = Antonio({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body
         className={`antialiased ${antonio.variable} ${proximaNova.variable} font-antonio`}
       >
+        <LenisProvider />
         {children}
       </body>
     </html>
