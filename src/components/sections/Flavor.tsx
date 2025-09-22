@@ -1,17 +1,18 @@
-import React from "react";
+"use client";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import FlavorTitle from "../FlavorTitle";
 
-import FlavorSlider from "../FlavorSlider";
+import FlavorSliders from "../FlavorSliders";
 
 const Flavor = () => {
   return (
-    <section className="flavor-section">
-      <div className="h-full flex lg:flex-row flex-col items-center relative">
-        <div className="lg:w-[57%] flex-none h-80 lg:h-full md:mt-20 xl:mt-0">
+    <section className="flavor">
+      <div className="flex flavor-cnt  max-lg:flex-col sm:py-20 lg:py-20 py-10 px-3 sm:px-9  ">
+        <div className="lg:w-[52%] lg:mt-30">
           <FlavorTitle />
         </div>
-        <div className="h-full">
-          <FlavorSlider />
+        <div className="lg:w-[43%] mt-26 sm:mt-38 lg:mt-30">
+          <FlavorSliders />
         </div>
       </div>
     </section>
@@ -19,3 +20,12 @@ const Flavor = () => {
 };
 
 export default Flavor;
+
+/* <div>
+        <div className="lg:w-[57%] ">
+          <FlavorTitle />
+        </div>
+        <div className="h-full lg:w-[40%]">
+          <FlavorSliders />
+        </div>
+      </div> */

@@ -2,9 +2,13 @@
 import { useGSAP } from "@gsap/react";
 import gsap, { SplitText } from "gsap/all";
 import Image from "next/image";
+import Link from "next/link";
 import { useMediaQuery } from "react-responsive";
 
 const Footer = () => {
+  const isMobile = useMediaQuery({
+    query: "(max-width: 768px)",
+  });
   useGSAP(() => {
     const firstHeading = SplitText.create("#f-cnt .first-txt", {
       type: "chars, lines",
@@ -15,7 +19,6 @@ const Footer = () => {
       scrollTrigger: {
         trigger: "#footer-cnt",
         start: "top 30%",
-        markers: true,
       },
     });
 
@@ -25,10 +28,11 @@ const Footer = () => {
       ease: "power2.out",
     }).to(".clip-cnt", {
       clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+      ease: "circ.out",
     });
   });
   return (
-    <footer id="footer-cnt" className=" bg-[#222123] h-screen">
+    <footer id="footer-cnt" className=" bg-[#222123] min-h-screen">
       <Image
         src={"/images/footer-dip.png"}
         alt="footer-dip"
@@ -60,6 +64,83 @@ const Footer = () => {
           <button className="bg-[#222123] rounded-full text-lg text-milk uppercase px-7 py-3">
             Find the store
           </button>
+        </div>
+      </div>
+
+      {/* bootom info  */}
+      <div className="md:pt-12 pt-10  px-3 md:px-9  lg:pt-24 relative h-screen overflow-hidden flex flex-col">
+        <h1 className="text-[7vw] font-bold text-milk text-center ">
+          #chugresponsibly
+        </h1>
+        <div className="flex-center gap-5 relative z-10 md:mt-10 mt-5">
+          <div className="social-btn">
+            <img src="./images/yt.svg" alt="" />
+          </div>
+          <div className="social-btn">
+            <img src="./images/insta.svg" alt="" />
+          </div>
+          <div className="social-btn">
+            <img src="./images/tiktok.svg" alt="" />
+          </div>
+        </div>
+        {isMobile ? (
+          <img
+            src="/images/footer-drink.png"
+            className="absolute top-0 object-contain"
+          />
+        ) : (
+          <video
+            src="/videos/splash.mp4"
+            playsInline
+            autoPlay
+            muted
+            className="mix-blend-lighten absolute w-[100%]   lg:-top-[14%] -top-5  left-1/2 -translate-x-1/2"
+          ></video>
+        )}
+        {/* mid-content  */}
+        <div className="mt-40 md:px-10 relative z-10 px-5 flex gap-10 md:flex-row flex-col justify-between text-milk  md:text-lg font-medium">
+          <div className="flex items-center md:gap-16 gap-5">
+            <div>
+              <p>SPYLT Flavors</p>
+            </div>
+            <div>
+              <p>Chug Club</p>
+              <p>Student Marketing</p>
+              <p>Dairy Dealers</p>
+            </div>
+            <div>
+              <p>Company</p>
+              <p>Contacts</p>
+              <p>Tasty Talk</p>
+            </div>
+          </div>
+
+          <div className="md:max-w-lg">
+            <p>
+              Get Exclusive Early Access and Stay Informed About Product
+              Updates, Events, and More!
+            </p>
+            <div className="border-b border-milk border-m mt-10 h-16 pt-3 flex">
+              <input
+                placeholder="Enter Your Email"
+                type="text"
+                className="h-full pl-1 placeholder:text-[clamp(16px,2vw,39px)] flex-1 focus:outline-none text-[clamp(16px,2vw,39px)]"
+              />
+              <img
+                src="/images/arrow.svg"
+                alt="arrow"
+                className="max-sm:size-12"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-auto flex justify-between pb-5 text-[#756E6C]">
+          <p>Copyright © 2025 Spylt - All Rights Reserved</p>
+          <div className="space-x-3">
+            <Link href={"/"}>Privacy Policy</Link>
+            <Link href={"/"}>Privacy Policy</Link>
+          </div>
         </div>
       </div>
     </footer>
@@ -153,3 +234,38 @@ export default Footer;
 //         </div>
 //       </div>
 //     </section>
+
+//  <div className="mt-40 md:px-10 px-5 flex gap-10 md:flex-row flex-col justify-between text-milk font-paragraph md:text-lg font-medium">
+//           <div className="flex items-center md:gap-16 gap-5">
+//             <div>
+//               <p>SPYLT Flavors</p>
+//             </div>
+//             <div>
+//               <p>Chug Club</p>
+//               <p>Student Marketing</p>
+//               <p>Dairy Dealers</p>
+//             </div>
+//             <div>
+//               <p>Company</p>
+//               <p>Contacts</p>
+//               <p>Tasty Talk</p>
+//             </div>
+//           </div>
+
+//           <div className="md:max-w-lg">
+//             <p>
+//               Get Exclusive Early Access and Stay Informed About Product
+//               Updates, Events, and More!
+//             </p>
+
+//           </div>
+//         </div>
+
+//         <div className="copyright-box text-milk">
+//           {/* The final row with copyright and legal links. */}
+//           <p>Copyright © 2025 Spylt - All Rights Reserved</p>
+//           <div className="flex items-center gap-7">
+//             <p>Privacy Policy</p>
+//             <p>Terms of Sеrvice</p>
+//           </div>
+//         </div>
