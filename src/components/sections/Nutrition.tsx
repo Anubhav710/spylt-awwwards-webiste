@@ -3,6 +3,7 @@ import { nutrientLists } from "@/constants";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
@@ -70,13 +71,21 @@ const Nutrition = () => {
   });
   return (
     <section className="nutrition-section bg-[#E6D9C5]">
-      <img
+      <Image
+        width={1200}
+        height={1200}
         src="/images/slider-dip.png"
-        alt=""
+        alt="style"
         className="w-full object-cover"
       />
 
-      <img src="/images/big-img.png" alt="" className="big-img" />
+      <Image
+        width={1200}
+        height={1200}
+        src="/images/big-img.png"
+        alt="style"
+        className="big-img"
+      />
 
       <div className="flex md:flex-row flex-col justify-between md:px-10 px-5 mt-14 md:mt-0">
         <div className="relative inline-block md:translate-y-20">

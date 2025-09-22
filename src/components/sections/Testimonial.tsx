@@ -82,7 +82,7 @@ const TestimonialSection: React.FC = () => {
     <section className="testimonials-section">
       <div className="absolute size-full flex flex-col items-center pt-[5vw]">
         <h1 className="text-black first-title text-[clamp(10px,14vw,268px)]">
-          What's
+          What&pos;s
         </h1>
         <h1 className="text-light-brown sec-title text-[clamp(10px,14vw,268px)]">
           Everyone

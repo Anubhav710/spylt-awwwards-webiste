@@ -3,9 +3,10 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ReactLenis } from "lenis/react";
+import Lenis from "lenis";
 
 export default function LenisProvider() {
-  const lenisRef = useRef<any>(null);
+  const lenisRef = useRef<Lenis | any>(null);
 
   useEffect(() => {
     const update = (time: number) => {

@@ -91,18 +91,6 @@ const FlavorSliders = () => {
               alt=""
               className="absolute w-[60%] left-1/2 -translate-x-1/2 bottom-0"
             />
-
-            {/* <img
-              src={`/images/${flavor.color}-drink.webp`}
-              alt=""
-              className="drinks"
-            />
-
-            <img
-              src={`/images/${flavor.color}-elements.webp`}
-              alt=""
-              className="elements"
-            /> */}
           </div>
         ))}
       </div>
