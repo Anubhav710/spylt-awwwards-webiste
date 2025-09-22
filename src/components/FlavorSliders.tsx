@@ -62,12 +62,12 @@ const FlavorSliders = () => {
   });
   return (
     <div ref={fRef}>
-      <div className="flex  max-lg:flex-col gap-32 sm:gap-42 lg:gap-20 lg:pl-5">
+      <div className="flex  max-lg:flex-col gap-32 sm:gap-42 lg:gap-32 lg:pl-5">
         {flavorlists.map((flavor, idx) => (
           <div
             key={idx}
             className="w-full relative 
-            rounded-2xl shrink-0 h-max"
+            rounded-2xl shrink-0 h-max even:rotate-8 odd:-rotate-8"
           >
             <Image
               width={210}
