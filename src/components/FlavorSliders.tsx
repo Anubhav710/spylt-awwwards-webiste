@@ -62,7 +62,7 @@ const FlavorSliders = () => {
   });
   return (
     <div ref={fRef}>
-      <div className="flex  max-lg:flex-col gap-32 sm:gap-42 lg:gap-32 lg:pl-5">
+      <div className="flex  max-lg:flex-col gap-32 sm:gap-42 lg:gap-32 lg:pl-5 max-sm:px-2">
         {flavorlists.map((flavor, idx) => (
           <div
             key={idx}

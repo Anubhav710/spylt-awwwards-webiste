@@ -20,7 +20,7 @@ const FlavorTitle = () => {
     });
 
     tl.from(firstTextSplit.chars, {
-      yPercent: 100,
+      yPercent: 120,
       stagger: 0.02,
       ease: "power2.out",
     })
@@ -29,7 +29,7 @@ const FlavorTitle = () => {
         ease: "circ.out",
       })
       .from(sndTextSplit.chars, {
-        yPercent: 100,
+        yPercent: 120,
         stagger: 0.02,
         ease: "power2.out",
       });

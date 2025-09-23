@@ -90,7 +90,7 @@ const Benefit = () => {
         </div>
       </div>
 
-      <div className="relative overlay-box">
+      <div className="video-section relative">
         <VideoPinSection />
       </div>
     </section>

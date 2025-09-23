@@ -1,5 +1,6 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import Image from "next/image";
 import React from "react";
 import { useMediaQuery } from "react-responsive";
 
@@ -7,32 +8,14 @@ const VideoPinSection = () => {
   const isMobile = useMediaQuery({
     query: "(max-width:768px)",
   });
-  useGSAP(() => {
-    if (!isMobile) {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".vd-pin-section",
-          start: "-15% top",
-          end: "200% top",
-          scrub: 1.5,
 
-          pin: true,
-        },
-      });
-
-      tl.to(".video-box", {
-        clipPath: "circle(100% at 50% 50%)",
-        ease: "power1.inOut",
-      });
-    }
-  });
   return (
-    <section className="vd-pin-section">
+    <section className="">
       <div
         style={{
           clipPath: isMobile
             ? "circle(100% at 50% 50%)"
-            : "circle(6% at 50% 50%)",
+            : "circle(100% at 50% 50%)",
         }}
         className="size-full video-box"
       >
@@ -45,10 +28,18 @@ const VideoPinSection = () => {
         ></video>
 
         <div className="abs-center md:scale-100 scale-200">
-          <img src="/images/circle-text.svg" alt="" className="spin-circle" />
+          <Image
+            src="/images/circle-text.svg"
+            width={120}
+            height={120}
+            alt=""
+            className="spin-circle"
+          />
           <div className="play-btn">
-            <img
+            <Image
               src="/images/play.svg"
+              width={120}
+              height={120}
               alt=""
               className="size-[3vw] ml-[.5vw]"
             />

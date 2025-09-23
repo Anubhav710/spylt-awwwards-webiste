@@ -13,7 +13,7 @@ import TestimonialSection from "@/components/sections/Testimonial";
 export default function Home() {
   return (
     <GSAPWrapper>
-      <div>
+      <div className="overflow-x-hidden">
         <Header />
         <Hero />
         <Message />
@@ -21,7 +21,7 @@ export default function Home() {
         <Nutrition />
         <div>
           <Benefit />
-          <TestimonialSection />
+          {/* <TestimonialSection /> */}
         </div>
         <Footer />
       </div>
