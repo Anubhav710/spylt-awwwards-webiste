@@ -5,26 +5,27 @@ import Flavor from "@/components/sections/Flavor";
 import Footer from "@/components/sections/Footer";
 
 import Header from "@/components/sections/Header";
-import Hero from "@/components/sections/Hero";
+
 import Message from "@/components/sections/Message";
+import dynamic from "next/dynamic";
 import Nutrition from "@/components/sections/Nutrition";
 import TestimonialSection from "@/components/sections/Testimonial";
+import Hero from "@/components/sections/Hero";
 
 export default function Home() {
   return (
-    <GSAPWrapper>
-      <div className="overflow-x-hidden">
-        <Header />
-        <Hero />
-        <Message />
-        <Flavor />
-        <Nutrition />
-        <div>
-          <Benefit />
-          {/* <TestimonialSection /> */}
-        </div>
-        <Footer />
+    <div className="overflow-x-clip">
+      <Header />
+      <Hero />
+      <Message />
+      {/* <Flavor /> */}
+
+      <Nutrition />
+      <div>
+        <Benefit />
+        <TestimonialSection />
       </div>
-    </GSAPWrapper>
+      <Footer />
+    </div>
   );
 }

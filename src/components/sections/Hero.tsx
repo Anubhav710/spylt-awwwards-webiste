@@ -3,13 +3,10 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
 import Image from "next/image";
-import { useMediaQuery } from "react-responsive";
 import LiquidButton from "../common/Button";
+import { useEffect, useState } from "react";
 
 const Hero = () => {
-  const isTablet = useMediaQuery({
-    query: "(max-width: 1024px)",
-  });
   useGSAP(() => {
     const titleSplit = SplitText.create(".hero-title", {
       type: "chars",
@@ -58,31 +55,34 @@ const Hero = () => {
       ease: "power1.inOut",
     });
   });
+
   return (
     <section className="bg-main-bg overflow-x-clip">
       <div className="hero-container">
-        {isTablet ? (
-          <>
-            {
-              <img
-                src="/images/hero-bg.png"
-                className="absolute bottom-0 size-full object-cover"
-              />
-            }
-            <img
-              src="/images/hero-img.png"
-              className="absolute bottom-0 left-1/2 -translate-x-1/2 object-auto"
-            />
-          </>
-        ) : (
-          <video
-            src="/videos/hero-bg.mp4"
-            autoPlay
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        )}
+        <Image
+          alt="hero-img"
+          width={1200}
+          height={1200}
+          src="/images/hero-bg.png"
+          className="absolute bottom-0 size-full object-cover smd:hidden"
+        />
+
+        <Image
+          alt="hero-img-2"
+          width={1200}
+          height={1200}
+          src="/images/hero-img.png"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 object-auto smd:hidden"
+        />
+
+        <video
+          src="/videos/hero-bg.mp4"
+          autoPlay
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover max-smd:hidden"
+        />
+
         <div className="hero-content opacity-0">
           <div className="overflow-hidden">
             <h1 className="hero-title">Freaking Delicious</h1>

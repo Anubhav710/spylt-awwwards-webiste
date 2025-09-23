@@ -2,29 +2,18 @@
 import { nutrientLists } from "@/constants";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { SplitText } from "gsap/all";
+import { ScrollTrigger, SplitText } from "gsap/all";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Nutrition = () => {
-  const isMobile = useMediaQuery({
-    query: "(max-width: 768px)",
-  });
-
-  const [lists, setLists] = useState(nutrientLists);
-
-  useEffect(() => {
-    if (isMobile) {
-      setLists(nutrientLists.slice(0, 3));
-    } else {
-      setLists(nutrientLists);
-    }
-  }, [isMobile]);
-
   useGSAP(() => {
     const titleSplit = SplitText.create(".nutrition-title", {
-      type: "chars",
+      type: "chars, lines",
+      mask: "lines",
     });
     const paragraph = SplitText.create(".milk-txt", {
       type: "words, lines",
@@ -35,13 +24,14 @@ const Nutrition = () => {
       type: "words, lines",
       linesClass: "paragraph-line",
     });
+    const contentTl = gsap.timeline();
 
-    const contentTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#nutrition-wrapper",
-        start: "top 80%",
-      },
+    ScrollTrigger.create({
+      trigger: "#nutrition-section",
+      start: "top 60%",
+      animation: contentTl,
     });
+
     contentTl
       .from(titleSplit.chars, {
         yPercent: 120,
@@ -53,7 +43,7 @@ const Nutrition = () => {
         {
           duration: 1,
           opacity: 1,
-          clipPath: "polygon(100% 0, 0 0, 0 100%, 100% 100%)",
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
           ease: "power1.inOut",
         },
         "<0.3"
@@ -84,74 +74,74 @@ const Nutrition = () => {
   });
   // bg-[#E6D9C5]
   return (
-    <div id="nutrition-wrapper">
-      <section className="nutrition-section">
-        <Image
-          width={1200}
-          height={1200}
-          src="/images/slider-dip.png"
-          alt="style"
-          className="w-full object-cover"
-        />
+    <section
+      id="nutrition-section"
+      className=" relative h-screen   bg-[#E2D4BD] smd:h-[120vh]"
+    >
+      <Image
+        width={1200}
+        height={1200}
+        src="/images/slider-dip.png"
+        alt="style"
+        className="w-full object-cover"
+      />
 
-        <Image
-          width={1200}
-          height={1200}
-          src="/images/big-img.png"
-          alt="style"
-          className="big-img"
-        />
+      <div className="z-20 flex flex-col justify-center items-center self-center absolute inset-[20vw_auto_auto_2vw]"></div>
 
-        <div className="flex md:flex-row flex-col justify-between md:px-10 px-5 mt-14 md:mt-0">
-          <div className="relative inline-block md:translate-y-20">
-            <div className="general-title relative flex flex-col justify-center items-center gap-24">
-              <div className="overflow-hidden place-self-start">
-                <h1 className="nutrition-title">It still does</h1>
-              </div>
-              <div
-                style={{
-                  clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)",
-                }}
-                className="nutrition-text-scroll place-self-start"
-              >
-                <div className="bg-yellow-brown pb-5 md:pt-0 pt-3 md:px-5 px-3">
-                  <h2 className="text-milk-yellow">Body Good</h2>
-                </div>
-              </div>
-            </div>
-          </div>
+      <Image
+        width={1200}
+        height={1200}
+        src="/images/big-img.webp"
+        alt="style"
+        className="absolute w-full object-cover max-smd:h-[60%] inset-[auto_0%_0%]"
+      />
+      {/* mid section  */}
+      <div className="relative padding-x flex flex-col smd:flex-row smd:justify-between  max-smd:pt-24">
+        <div>
+          <h1 className="nutrition-title font-bold text-[clamp(79px,9vw,154px)] leading-[clamp(79px,10vw,170px)] tracking-[-0.45vw] px-2  uppercase">
+            It still does
+          </h1>
 
-          <div className="flex md:justify-center items-center translate-y-5">
-            <div className="md:max-w-xs max-w-md">
-              <p className="milk-txt text-lg md:text-right text-balance font-paragraph">
-                Milk contains a wide array of nutrients, including vitamins,
-                minerals, and protein, and this is lactose free
-              </p>
-            </div>
-          </div>
-
-          <div id="nuti-info" className="nutrition-box ">
-            <div className="list-wrapper">
-              {lists.map((nutrient, index) => (
-                <div key={index} className="relative flex-1 col-center">
-                  <div>
-                    <p className="md:text-lg ">{nutrient.label}</p>
-                    <p className="font-paragraph text-sm mt-2">up to</p>
-                    <p className="text-2xl md:text-4xl tracking-tighter font-bold">
-                      {nutrient.amount}
-                    </p>
-                  </div>
-
-                  {index !== lists.length - 1 && (
-                    <div className="spacer-border" />
-                  )}
-                </div>
-              ))}
-            </div>
+          <div
+            style={{ clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)" }}
+            className="nutrition-text-scroll -rotate-3 bg-mid-brown inline-block outline-4 outline-milk p-5 2xl:pt-0 pt-3 2xl:px-5 px-3"
+          >
+            <h2 className="text-milk text-[clamp(70px,9vw,154px)] leading-[clamp(46px,10vw,170px)] tracking-[-0.45vw] px-2 uppercase font-bold">
+              body good
+            </h2>
           </div>
         </div>
-      </section>
-    </div>
+
+        <p className="milk-txt md:max-w-xs smd:pt-10 pt-7 smd:text-right  max-w-sm text-lg  text-pretty font-medium">
+          Milk contains a wide array of nutrients, including vitamins, minerals,
+          and protein, and this is lactose free
+        </p>
+      </div>
+
+      {/* bottom section  */}
+      <div id="nuti-info" className="nutrition-box  px-5">
+        <div className="list-wrapper">
+          {nutrientLists.map((nutrient, index) => (
+            <div
+              key={index}
+              className="relative max-md:even:hidden flex-1 col-center"
+            >
+              <div>
+                <p className="md:text-sm">{nutrient.label}</p>
+                <p className="font-paragraph text-sm mt-2">up to</p>
+                <p className="text-2xl md:text-4xl tracking-tighter font-bold">
+                  {nutrient.amount}
+                </p>
+              </div>
+
+              {index !== nutrientLists.length - 1 && (
+                <div className="spacer-border" />
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 

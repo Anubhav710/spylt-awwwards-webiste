@@ -4,6 +4,8 @@ import gsap from "gsap";
 import { ScrollTrigger, SplitText } from "gsap/all";
 import React from "react";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const FlavorTitle = () => {
   useGSAP(() => {
     const firstTextSplit = SplitText.create(".first-text-split h1", {

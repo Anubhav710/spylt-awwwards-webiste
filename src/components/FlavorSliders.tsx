@@ -2,8 +2,11 @@
 import { flavorlists } from "@/constants";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 import Image from "next/image";
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const FlavorSliders = () => {
   const fRef = useRef<HTMLDivElement | null>(null);
@@ -13,7 +16,7 @@ const FlavorSliders = () => {
 
     let mm = gsap.matchMedia();
 
-    mm.add("(min-width:1024px)", () => {
+    mm.add("(min-width:992px)", () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".flavor",
@@ -62,7 +65,7 @@ const FlavorSliders = () => {
   });
   return (
     <div ref={fRef}>
-      <div className="flex  max-lg:flex-col gap-32 sm:gap-42 lg:gap-32 lg:pl-5 max-sm:px-2">
+      <div className="flex  max-smd:flex-col gap-32 sm:gap-42 lg:gap-32 lg:pl-5 max-sm:px-2">
         {flavorlists.map((flavor, idx) => (
           <div
             key={idx}
@@ -70,8 +73,8 @@ const FlavorSliders = () => {
             rounded-2xl shrink-0 h-max even:rotate-8 odd:-rotate-8"
           >
             <Image
-              width={210}
-              height={210}
+              width={2100}
+              height={2100}
               src={`/images/${flavor.color}-bg.svg`}
               alt=""
               className="w-full object-cover rounded-2xl"

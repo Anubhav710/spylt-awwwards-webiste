@@ -7,7 +7,7 @@ import FlavorSliders from "../FlavorSliders";
 const Flavor = () => {
   return (
     <section className="flavor">
-      <div className="flex flavor-cnt  max-lg:flex-col sm:py-20 lg:py-20 py-10 px-3 sm:px-9  ">
+      <div className="flex flex-col smd:flex-row flavor-cnt  sm:py-20 lg:py-20 py-10 px-3 sm:px-9  ">
         <div className="lg:w-[52%] lg:mt-30">
           <FlavorTitle />
         </div>
@@ -20,12 +20,3 @@ const Flavor = () => {
 };
 
 export default Flavor;
-
-/* <div>
-        <div className="lg:w-[57%] ">
-          <FlavorTitle />
-        </div>
-        <div className="h-full lg:w-[40%]">
-          <FlavorSliders />
-        </div>
-      </div> */

@@ -84,13 +84,13 @@ const Benefit = () => {
             />
           </div>
 
-          <div className="md:mt-0 mt-10">
+          <div className="md:pt-2 pt-10">
             <p>And much more ...</p>
           </div>
         </div>
       </div>
 
-      <div className="video-section relative">
+      <div className="relative overlay-box">
         <VideoPinSection />
       </div>
     </section>

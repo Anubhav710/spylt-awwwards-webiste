@@ -1,45 +1,51 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import Image from "next/image";
-import React from "react";
-import { useMediaQuery } from "react-responsive";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const VideoPinSection = () => {
-  const isMobile = useMediaQuery({
-    query: "(max-width:768px)",
+  useGSAP(() => {
+    let mm = gsap.matchMedia();
+
+    mm.add("(min-width: 992px)", () => {
+      // Force set the initial state to ensure GSAP knows the starting point
+      gsap.set(".video-box", {
+        clipPath: "circle(6% at 50% 50%)",
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".vd-pin-section",
+          start: "-15% top",
+          end: "200% top",
+          scrub: 1.5,
+          pin: true,
+        },
+      });
+
+      tl.to(".video-box", {
+        clipPath: "circle(100% at 50% 50%)",
+        ease: "power1.inOut",
+      });
+    });
   });
 
   return (
-    <section className="">
+    <section className="vd-pin-section">
       <div
-        style={{
-          clipPath: isMobile
-            ? "circle(100% at 50% 50%)"
-            : "circle(100% at 50% 50%)",
-        }}
         className="size-full video-box"
+        style={{
+          clipPath: "circle(100% at 50% 50%)", // Fallback for mobile
+        }}
       >
-        <video
-          src="/videos/pin-video.mp4"
-          muted
-          autoPlay
-          loop
-          playsInline
-        ></video>
+        <video src="/videos/pin-video.mp4" playsInline muted loop autoPlay />
 
         <div className="abs-center md:scale-100 scale-200">
-          <Image
-            src="/images/circle-text.svg"
-            width={120}
-            height={120}
-            alt=""
-            className="spin-circle"
-          />
+          <img src="/images/circle-text.svg" alt="" className="spin-circle" />
           <div className="play-btn">
-            <Image
+            <img
               src="/images/play.svg"
-              width={120}
-              height={120}
               alt=""
               className="size-[3vw] ml-[.5vw]"
             />

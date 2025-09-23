@@ -25,9 +25,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body
         className={`antialiased ${antonio.variable} ${proximaNova.variable} font-antonio`}
+        suppressHydrationWarning
       >
         <LenisProvider />
         {children}

@@ -1,23 +1,29 @@
 "use client";
+
 import { useRef } from "react";
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { cards } from "@/constants";
 
-// Type definition for card object
-interface Card {
+// ✅ If your cards array looks like [{ src: string, translation: string, rotation: string }, ...]
+type Card = {
   src: string;
   translation: string;
   rotation: string;
-}
+};
 
-const TestimonialSection: React.FC = () => {
-  const vdRef = useRef<(HTMLVideoElement | null)[]>([]);
+const TestimonialSection = () => {
+  // Array of video element refs
+  const vdRef = useRef<HTMLVideoElement[]>([]);
 
   useGSAP(() => {
-    gsap.set(".testimonials-section", {
-      marginTop: "-140vh",
+    let mm = gsap.matchMedia();
+
+    mm.add("(min-width:992px)", () => {
+      gsap.set(".testimonials-section", {
+        marginTop: "-150vh",
+      });
     });
 
     const tl = gsap.timeline({
@@ -32,20 +38,8 @@ const TestimonialSection: React.FC = () => {
     tl.to(".testimonials-section .first-title", {
       xPercent: 70,
     })
-      .to(
-        ".testimonials-section .sec-title",
-        {
-          xPercent: 25,
-        },
-        "<"
-      )
-      .to(
-        ".testimonials-section .third-title",
-        {
-          xPercent: -50,
-        },
-        "<"
-      );
+      .to(".testimonials-section .sec-title", { xPercent: 25 }, "<")
+      .to(".testimonials-section .third-title", { xPercent: -50 }, "<");
 
     const pinTl = gsap.timeline({
       scrollTrigger: {
@@ -64,36 +58,27 @@ const TestimonialSection: React.FC = () => {
     });
   });
 
-  const handlePlay = (index: number): void => {
+  // ✅ Type-safe handlers
+  const handlePlay = (index: number) => {
     const video = vdRef.current[index];
-    if (video) {
-      video.play();
-    }
+    video?.play();
   };
 
-  const handlePause = (index: number): void => {
+  const handlePause = (index: number) => {
     const video = vdRef.current[index];
-    if (video) {
-      video.pause();
-    }
+    video?.pause();
   };
 
   return (
     <section className="testimonials-section">
       <div className="absolute size-full flex flex-col items-center pt-[5vw]">
-        <h1 className="text-black first-title text-[clamp(10px,14vw,268px)]">
-          What&pos;s
-        </h1>
-        <h1 className="text-light-brown sec-title text-[clamp(10px,14vw,268px)]">
-          Everyone
-        </h1>
-        <h1 className="text-black third-title text-[clamp(10px,14vw,268px)]">
-          Talking
-        </h1>
+        <h1 className="text-black first-title">What's</h1>
+        <h1 className="text-light-brown sec-title">Everyone</h1>
+        <h1 className="text-black third-title">Talking</h1>
       </div>
 
       <div className="pin-box">
-        {(cards as Card[]).map((card: Card, index: number) => (
+        {cards.map((card: any, index: number) => (
           <div
             key={index}
             className={`vd-card ${card.translation} ${card.rotation}`}
@@ -101,8 +86,8 @@ const TestimonialSection: React.FC = () => {
             onMouseLeave={() => handlePause(index)}
           >
             <video
-              ref={(el: HTMLVideoElement | null) => {
-                vdRef.current[index] = el;
+              ref={(el) => {
+                if (el) vdRef.current[index] = el;
               }}
               src={card.src}
               playsInline
